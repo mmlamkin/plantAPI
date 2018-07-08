@@ -1,6 +1,6 @@
 require "test_helper"
 
-describe PlantsController do
+describe UsersController do
   # it "must be a real test" do
   #   flunk "Need real tests"
   # end

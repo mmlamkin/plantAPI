@@ -2,24 +2,30 @@
 
 one:
   name: MyString
-  synonyms: MyString
   description: MyString
-  height: MyString
-  spread: MyString
-  maintenance: MyString
-  care: MyString
+  optimal_sun: MyString
+  planting_considerations: MyString
+  when_to_plant: MyString
+  growing_from_seed: MyString
+  spacing: MyString
+  watering: MyString
+  other_care: MyString
+  diseases: MyString
+  pests: MyString
+  harvesting: MyString
   image: MyString
-  earlyCrop: MyString
-  lateCrop: MyString
 
 two:
   name: MyString
-  synonyms: MyString
   description: MyString
-  height: MyString
-  spread: MyString
-  maintenance: MyString
-  care: MyString
+  optimal_sun: MyString
+  planting_considerations: MyString
+  when_to_plant: MyString
+  growing_from_seed: MyString
+  spacing: MyString
+  watering: MyString
+  other_care: MyString
+  diseases: MyString
+  pests: MyString
+  harvesting: MyString
   image: MyString
-  earlyCrop: MyString
-  lateCrop: MyString

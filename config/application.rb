@@ -18,6 +18,7 @@ Bundler.require(*Rails.groups)
 
 module PlantAPI
   class Application < Rails::Application
+
   config.generators do |g|
     # Force new test files to be generated in the minitest-spec style
     g.test_framework :minitest, spec: true
@@ -27,6 +28,12 @@ module PlantAPI
   end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
+    config.eager_load_paths << Rails.root.join('lib')
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :options]
+      end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

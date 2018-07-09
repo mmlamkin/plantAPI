@@ -1,10 +1,8 @@
 class GardensController < ApplicationController
-  def index
-
-  end
 
   def show
-
+    @garden = Garden.find_by(id: params[:id])
+    render json: {plants: @garden.plants}, status: :ok
   end
 
   def new
@@ -12,11 +10,7 @@ class GardensController < ApplicationController
   end
 
   def create
-    garden = Garden.create(
-      customer_id: params[:customer_id],
-      movie_id: params[:movie_id],
 
-    )
 
     if garden.save
       render json: {customer_id: rental.customer_id, movie_id: rental.movie_id}, status: :ok

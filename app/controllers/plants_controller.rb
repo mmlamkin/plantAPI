@@ -1,8 +1,9 @@
-require_relative '../..//lib/plant_wrapper'
 
 class PlantsController < ApplicationController
+
   def index
     data = PlantWrapper.show_all
+
     render status: :ok, json: data
   end
 

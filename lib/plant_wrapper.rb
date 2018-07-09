@@ -1,3 +1,4 @@
+
 class PlantWrapper
   BASE_URL = "http://harvesthelper.herokuapp.com/api/v1/plants"
   KEY = ENV["PLANT_KEY"]
@@ -5,12 +6,12 @@ class PlantWrapper
 
 
   def self.show_all
-    url = BASE_URL + "?api_key=" + 'd5d99c29ba04c3be01b68c4b81f3dbb3'
+    url = BASE_URL + "?api_key=" + "d5d99c29ba04c3be01b68c4b81f3dbb3"
     response = HTTParty.get(url)
+
     if response == nil
       return []
     else
-
       plants = response.map do |result|
         self.construct_plant(result)
       end
@@ -18,10 +19,25 @@ class PlantWrapper
     end
   end
 
+  def self.create_all
+    url = BASE_URL + "?api_key=" + "d5d99c29ba04c3be01b68c4b81f3dbb3"
+    response = HTTParty.get(url)
+
+    if response == nil
+      return []
+    else
+      plants = response.map do |result|
+        self.construct_plant(result)
+      end
+      return plants
+    end
+  end
+
+
   def self.search(id)
-    url = BASE_URL + "/" + id + "?api_key=" + 'd5d99c29ba04c3be01b68c4b81f3dbb3'
+    url = BASE_URL + "/" + id + "?api_key=" + "d5d99c29ba04c3be01b68c4b81f3dbb3"
     response =  HTTParty.get(url)
-  
+
     if response["error"]
       return nil
     else
@@ -33,7 +49,7 @@ class PlantWrapper
   private
 
   def self.construct_plant(api_result)
-    Plant.new(
+    @plant = Plant.create(
       name: api_result["name"],
       description: api_result["description"],
       optimal_sun: api_result["optimal_sun"],
@@ -43,10 +59,10 @@ class PlantWrapper
       spacing: api_result["spacing"],
       watering: api_result["watering"],
       other_care: api_result["other_care"],
-      # disease: api_result["diseases"],
       pests: api_result["pests"],
       harvesting: api_result["harvesting"],
       image: api_result["image"])
+      puts "#{@plant.name} made!"
 
   end
 end

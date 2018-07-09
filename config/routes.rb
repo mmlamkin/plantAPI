@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :plants
+  resources :plants, only: [:index, :show]
+
+  post "/add_plant", to: "plants#add_plant", as: "add_plant"
 
   resources :gardens
 

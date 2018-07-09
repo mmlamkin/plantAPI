@@ -19,15 +19,14 @@ class PlantWrapper
   end
 
   def self.search(id)
-    url = BASE_URL + "/" + id + "?api_key=" + KEY
+    url = BASE_URL + "/" + id + "?api_key=" + 'd5d99c29ba04c3be01b68c4b81f3dbb3'
     response =  HTTParty.get(url)
-    if response["total_results"] == 0
-      return []
+
+    if response["total_results"].nil?
+      
     else
-      plants = response["results"].map do |result|
-        self.construct_plant(result)
-      end
-      return plants
+      plant = self.construct_plant(response)
+      return plant
     end
   end
 

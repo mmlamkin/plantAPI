@@ -7,19 +7,12 @@ class PlantsController < ApplicationController
   end
 
   def show
-    @plant = Plant.find_by(id: params[:id])
+    data = PlantWrapper.search(params[:id])
 
-    render(
-      status: :ok,
-      json: @movie.as_json(
-        only: [:title, :overview, :release_date, :inventory],
-        methods: [:available_inventory]
-      )
-    )
-
-    if @plant.nil?
+    if data.nil?
       render json: { ok: false, :errors => "Plant not found" }, status: :not_found
+    else
+      render status: :ok, json: data
     end
-
   end
 end

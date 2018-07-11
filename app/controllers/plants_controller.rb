@@ -2,13 +2,13 @@
 class PlantsController < ApplicationController
 
   def index
-    data = PlantWrapper.show_all
+    data = Plant.all
 
     render status: :ok, json: data
   end
 
   def show
-    data = PlantWrapper.search(params[:id])
+    data = Plant.find_by(id: params[:id])
 
     if data.nil?
       render json: { ok: false, :errors => "Plant not found" }, status: :not_found

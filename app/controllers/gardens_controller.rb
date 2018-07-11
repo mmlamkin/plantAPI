@@ -5,23 +5,27 @@ class GardensController < ApplicationController
     render json: {plants: @garden.plants}, status: :ok
   end
 
-  def new
-
-  end
-
   def create
 
+    garden = Garden.new
 
     if garden.save
-      render json: {customer_id: rental.customer_id, movie_id: rental.movie_id}, status: :ok
+      render status: :ok
 
     else
-      render json: {ok: false, errors: rental.errors}, status: :bad_request
+      render json: {ok: false, errors: garden.errors}, status: :bad_request
 
     end
+  end
 
-  else
+  def update
+    @user = User.find_by(id: params[:user_id])
+    @plant = Plant.find_by(id: params[:plant_id])
 
-    render json: {ok: false, errors: "No copies available"}, status: :bad_request
+    if @user && @plant
+      @garden = @user.gardens[0]
+      @garden.plants << @plant
+      render json: {id: @user.id, garden: @user.gardens[0], plant: @plant}, status: :ok
+    end
   end
 end

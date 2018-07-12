@@ -4,7 +4,7 @@ class GardensController < ApplicationController
     @garden = @user.gardens.first
     render json: {plants: @garden.plants}, status: :ok
   end
-  
+
   def show
     @user = User.find_by(id: params[:user_id])
     @garden = @user.gardens.first
@@ -24,7 +24,7 @@ class GardensController < ApplicationController
     end
   end
 
-  def update
+  def add_to_garden
     @user = User.find_by(id: params[:user_id])
     @plant = Plant.find_by(id: params[:plant_id])
 
@@ -36,6 +36,24 @@ class GardensController < ApplicationController
         render json: {id: @user.id, garden: @user.gardens[0], plant: @plant}, status: :ok
       else
         render json: {ok: false, errors: 'This plant is already in your garden'}, status: :bad_request
+      end
+
+    else
+      render json: {ok: false, errors: gardens.error}, status: :bad_request
+    end
+  end
+
+  def del_from_garden
+    @user = User.find_by(id: params[:user_id])
+    @plant = Plant.find_by(id: params[:plant_id])
+
+    if @user && @plant
+      if !@user.gardens.first.plants.include?(@plant)
+        @garden = @user.gardens[0]
+        @garden.plants.delete(@plant)
+        render json: {id: @user.id, garden: @user.gardens[0]}, status: :ok
+      else
+        render json: {ok: false, errors: 'Could not delete plant'}, status: :bad_request
       end
 
     else

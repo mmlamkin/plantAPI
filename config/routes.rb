@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   post "/add_plant", to: "plants#add_plant", as: "add_plant"
 
-  patch "/users/:user_id/plants/:plant_id", to: "gardens#update", as: "update_garden"
+  patch "/users/:user_id/plants/:plant_id", to: "gardens#add_to_garden", as: "add_to_garden"
 
   resources :gardens
 

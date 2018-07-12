@@ -44,7 +44,7 @@ class PlantsController < ApplicationController
           json: @new_plant.as_json
         )
       else
-        render status: :bad_request, json: { errors: rental.errors.messages }
+        render status: :bad_request, json: { errors: errors.messages }
       end
     end
   end

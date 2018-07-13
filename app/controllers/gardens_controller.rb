@@ -1,3 +1,4 @@
+require 'pry'
 class GardensController < ApplicationController
   def index
     @user = User.find_by(id: params[:user_id])
@@ -8,7 +9,7 @@ class GardensController < ApplicationController
   def show
     @user = User.find_by(id: params[:user_id])
     @garden = @user.gardens.first
-    render json: {plants: @garden.plants}, status: :ok
+    render json: {garden: @garden, plants: @garden.plants}, status: :ok
   end
 
   def create
@@ -41,17 +42,21 @@ class GardensController < ApplicationController
     else
       render json: {ok: false, errors: gardens.error}, status: :bad_request
     end
+
   end
+
 
   def del_from_garden
     @user = User.find_by(id: params[:user_id])
     @plant = Plant.find_by(id: params[:plant_id])
 
     if @user && @plant
-      if !@user.gardens.first.plants.include?(@plant)
+      if @user.gardens.first.plants.include?(@plant)
         @garden = @user.gardens[0]
-        @garden.plants.delete(@plant)
+        @garden.plants.delete(@plant.id)
+
         render json: {id: @user.id, garden: @user.gardens[0]}, status: :ok
+
       else
         render json: {ok: false, errors: 'Could not delete plant'}, status: :bad_request
       end
@@ -59,5 +64,19 @@ class GardensController < ApplicationController
     else
       render json: {ok: false, errors: gardens.error}, status: :bad_request
     end
+  end
+
+  def clear_garden
+    @user = User.find_by(id: params[:user_id])
+    @garden = @user.gardens[0]
+
+    if @user && @garden
+      @garden.plants.clear
+
+      render json: {id: @user.id, garden: @user.gardens[0]}, status: :ok
+    else
+      render json: {ok: false, errors: 'Could not clear garden'}, status: :bad_request
+    end
+
   end
 end

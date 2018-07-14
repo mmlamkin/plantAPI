@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  zone: 1
+  early_harvest: MyString
+  late_harvest: MyString
+
+two:
+  zone: 1
+  early_harvest: MyString
+  late_harvest: MyString

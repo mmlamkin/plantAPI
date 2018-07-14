@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:user][:email])
+    # @user = User.find_by(email: params[:user][:email])
 
     if !@user.nil?
 
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
-  
+
 
   end
 

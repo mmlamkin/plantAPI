@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/create'
+
   root 'plants#index'
   resources :plants, only: [:index, :show]
 
@@ -9,6 +11,8 @@ Rails.application.routes.draw do
   delete "/users/:user_id/plants/:plant_id", to: "gardens#del_from_garden", as: "del_from_garden"
 
   delete '/users/:user_id/gardens/:garden_id', to: "gardens#clear_garden"
+
+  get "/auth/:provider/callback", to: "sessions#create"
 
   resources :gardens
 

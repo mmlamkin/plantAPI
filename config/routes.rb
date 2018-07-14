@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'sessions/create'
 
-  root 'plants#index'
   resources :plants, only: [:index, :show]
 
   post "/add_plant", to: "plants#add_plant", as: "add_plant"
@@ -13,6 +11,7 @@ Rails.application.routes.draw do
   delete '/users/:user_id/gardens/:garden_id', to: "gardens#clear_garden"
 
   get "/auth/:provider/callback", to: "sessions#create"
+  get '/auth/:provider', as: 'login'
 
   resources :gardens
 

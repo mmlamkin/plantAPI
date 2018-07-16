@@ -2,7 +2,7 @@
 require 'nokogiri'
 require 'open-uri'
 
- # PlantWrapper.create_all
+ PlantWrapper.create_all
 
 
 baseURL = "http://www.thevegetablegarden.info/planting-schedules"

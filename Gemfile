@@ -26,6 +26,8 @@ gem 'httparty'
 gem 'rack-cors'
 gem 'omniauth-google-oauth2'
 
+gem 'devise_token_auth', '0.1.43.beta1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'User', at: 'auth'
 
-  root 'plants#index'
-
+  root "plants#index"
   resources :plants, only: [:index, :show]
 
   post "/add_plant", to: "plants#add_plant", as: "add_plant"
@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
   delete '/users/:user_id/gardens/:garden_id', to: "gardens#clear_garden"
 
+  get "/auth/:provider/", to:
   get "/auth/:provider/callback", to: "sessions#create"
-
 
 
   resources :gardens

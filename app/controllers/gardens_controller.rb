@@ -3,7 +3,7 @@ class GardensController < ApplicationController
   def index
     @user = User.find_by(id: params[:user_id])
     @garden = @user.gardens.first
-    render json: {plants: @garden.plants}, status: :ok
+    render json: {garden_id: @garden.id, plants: @garden.plants}, status: :ok
   end
 
   def show

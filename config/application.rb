@@ -34,12 +34,11 @@ module PlantAPI
         origins '*'
         resource '*', headers: :any, methods: [:get, :post, :options]
       end
-      ActiveRecord::Migration::CheckPending
     end
 
-  config.middleware.insert_after
-   ActionDispatch::Cookies
-config.middleware.insert_after ActionDispatch::Cookies, ActionDispatch::Session::CookieStore
+#   config.middleware.insert_after ActiveRecord::Migration::CheckPending,
+#    ActionDispatch::Cookies
+# config.middleware.insert_after ActionDispatch::Cookies, ActionDispatch::Session::CookieStore
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

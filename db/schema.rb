@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180714185630) do
+ActiveRecord::Schema.define(version: 20180719173302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20180714185630) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "early_harvest"
+    t.string "late_harvest"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,15 +53,6 @@ ActiveRecord::Schema.define(version: 20180714185630) do
     t.string "idToken"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "zones", force: :cascade do |t|
-    t.integer "zone"
-    t.string "early_harvest"
-    t.string "late_harvest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
   end
 
 end

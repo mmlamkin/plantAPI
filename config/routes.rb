@@ -11,8 +11,7 @@ Rails.application.routes.draw do
 
   delete '/users/:user_id/gardens/:garden_id', to: "gardens#clear_garden"
 
-
-  resources :gardens
+  resources :users
 
   resources :users do
     resources :gardens, only: [:index]

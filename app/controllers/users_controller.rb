@@ -5,16 +5,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:user][:email])
+    @user = User.find_by(email: params[:email])
 
     if @user
 
-      render json: {id: @user.id, garden_id: @user.gardens[0].id}, status: :ok
+      render json: {user_id: @user.id, garden_id: @user.gardens[0].id, email: @user.email}, status: :ok
 
     else
-      @user = User.create(email: params[:user][:email])
+      @user = User.create(email: params[:email])
       garden = Garden.create(user_id: @user.id)
-      render json: {user_id: @user.id, garden_id: garden.id}, status: :ok
+      render json: {user_id: @user.id, garden_id: garden.id, email: @user.email}, status: :ok
     end
   end
 

@@ -1,21 +1,8 @@
 
+
 class PlantWrapper
   BASE_URL = "http://harvesthelper.herokuapp.com/api/v1/plants"
   KEY = ENV["PLANT_KEY"]
-
-  # def self.show_all
-  #   url = BASE_URL + "?api_key=" +
-  #   response = HTTParty.get(url)
-  #
-  #   if response == nil
-  #     return []
-  #   else
-  #     plants = response.map do |result|
-  #       self.construct_plant(result)
-  #     end
-  #     return plants
-  #   end
-  # end
 
   def self.create_all
     url = BASE_URL + "?api_key=" + KEY
@@ -27,21 +14,11 @@ class PlantWrapper
       plants = response.map do |result|
         self.construct_plant(result)
       end
-      return plants
+
     end
+    return plants
   end
 
-  # def self.search(id)
-  #   url = BASE_URL + "/" + id + "?api_key=" + KEY
-  #   response =  HTTParty.get(url)
-  #
-  #   if response["error"]
-  #     return nil
-  #   else
-  #     plant = self.construct_plant(response)
-  #     return plant
-  #   end
-  # end
 
   private
 
@@ -59,7 +36,12 @@ class PlantWrapper
       pests: api_result["pests"],
       harvesting: api_result["harvesting"],
       image: api_result["image"])
-      puts "#{@plant.name} made!"
+
+    @plant.update_plant
+
+      puts "#{@plant.name} created!"
+
+    end
+
 
   end
-end

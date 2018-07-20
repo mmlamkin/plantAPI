@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20180719173302) do
   create_table "gardens_plants", id: false, force: :cascade do |t|
     t.bigint "garden_id", null: false
     t.bigint "plant_id", null: false
+    t.index ["garden_id", "plant_id"], name: "index_gardens_plants_on_garden_id_and_plant_id"
+    t.index ["plant_id", "garden_id"], name: "index_gardens_plants_on_plant_id_and_garden_id"
   end
 
   create_table "plants", force: :cascade do |t|

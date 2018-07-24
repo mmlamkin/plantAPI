@@ -16,7 +16,6 @@ class GardensController < ApplicationController
 
     garden = Garden.new
 
-
     if garden.save
       render status: :ok
 

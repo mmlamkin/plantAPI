@@ -17,7 +17,7 @@ class PlantsController < ApplicationController
     end
   end
 
-  def add_plant
+  def create
     @new_plant = Plant.new()
     @new_plant.name = params[:name]
     @new_plant.description = params[:description]

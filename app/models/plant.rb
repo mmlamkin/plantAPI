@@ -4,6 +4,9 @@ require 'open-uri'
 class Plant < ApplicationRecord
   has_and_belongs_to_many :gardens, join_table: :gardens_plants
 
+  validates :name, presence: true, uniqueness: true
+
+
   def update_plant
     harvest_array = self.harvest_web_scrape
 
